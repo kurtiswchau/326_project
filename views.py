@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+#the urls here will change based on the names we give the templates and where we put the templates
 # Create your views here.
 from .models import Movie
 from .models import User
