@@ -21,7 +21,8 @@ def index(request):
     ##order_by 25
 def movie(request, title=None, director=None):
     ##what happens if two movies have same name
-    movie_object = Movie.objects.filter(title=title, director=director)
+    movie_objects = Movie.objects.filter(title=title, director=director)
+    movie_object = movie_objects.first()
     str = "movie/"## + movie_name
     context={
             "title": movie_object.title
@@ -37,7 +38,8 @@ def movie(request, title=None, director=None):
             context)
     
 def user(request, userid=None):
-    user_object = User.objects.filter(id=userid)
+    user_objects = User.objects.filter(id=userid)
+    user_object = user_objects.first()
     str = "user/"## + str(user_id)
     context={
             "username" = user_object.username
@@ -49,8 +51,10 @@ def user(request, userid=None):
             str,
             context)
     
-def matchbox(request):
-    matchbox_object = Matchbox.objects.filter(title = title, director = director)
+def matchbox(request, username, date, location):
+    ##matchbox_object = Matchbox.objects.filter(title = title, director = director)
+    matchbox_objects = Request.objects.filter(username = username, date=date, location=location)
+    matchbox_object = matchbox_objects.first()
     str = "matchbox/"## + movie_name
     context={
             "title": matchbox_object.title
