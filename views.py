@@ -55,37 +55,43 @@ def matchbox(request, username, date, location):
     ##matchbox_object = Matchbox.objects.filter(title = title, director = director)
     matchbox_objects = Request.objects.filter(username = username, date=date, location=location)
     matchbox_object = matchbox_objects.first()
+    movie = matchbox_object_movie_set.all().first()
+    user = matchbox_object_user_set.all().first()
     str = "matchbox/"## + movie_name
     context={
-            "title": matchbox_object.title
-            "cast": matchbox_object.cast
-            "director": matchbox_object.director
-            "summary": matchbox_object.summary
-            "duration": matchbox_object.duration
-            "date": matchbox_object.date
-            "username" = matchbox_object.username
-            "bio" = matchbox_object.bio
-            "pic" = matchbox_object.pic
-            "matchStatus" = matchbox_object.matchStatus
+            "title": movie.title
+            "cast": movie.cast
+            "director": movie.director
+            "summary": movie.summary
+            "duration": movie.duration
+            "date": movie.date
+            "username" = user.username
+            "bio" = user.bio
+            "pic" = user.pic
+            ##"matchStatus" = matchbox_object.matchStatus
             }
     return render(
             request,
             "matchbox",
             context)
-
+##matchbox and request currently following relation backwards to get the user; maybe there is a better way?
 def request(request):
-    request_object = Request.objects.filter(title = title, director = director)
+    request_objects = Request.objects.filter(title = title, director = director)
+     request_object = request_objects.first()
     str = "request/"## + movie_name
+    movie = request_object_movie_set.all().first()
+    user = request_object_user_set.all().first()
+    str = "matchbox/"## + movie_name
     context={
-            "title": request_object.title
-            "cast": request_object.cast
-            "director": request_object.director
-            "summary": request_object.summary
-            "duration": request_object.duration
-            "date": request_object.date
-            "username" = request_object.username
-            "bio" = request_object.bio
-            "pic" = request_object.pic
+            "title": movie.title
+            "cast": movie.cast
+            "director": movie.director
+            "summary": movie.summary
+            "duration": movie.duration
+            "date": movie.date
+            "username" = user.username
+            "bio" = user.bio
+            "pic" = user.pic
             "requestStatus" = request_object.requestStatus
             }
     return render(
