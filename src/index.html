@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="index.css" />
+<title>Flick</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-user-circle"></i>
+      User
+    </a>
+  </nav>
+
+  <div class="title">
+    <a href="index.html"><h1>Flick</h1></a>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <input id="searchbar" type="text" name="search" placeholder="Tell me what you're looking for.." />
+        <div class="filter">
+          <h4>Filters</h4>
+
+          <div class="option">
+            <ul>
+              <input type="checkbox" name="" value="mon"/> Monday<br/>
+              <input type="checkbox" name="" value="tue"/> Tuesday<br/>
+              <input type="checkbox" name="" value="wed"/> Wednesday<br/>
+              <input type="checkbox" name="" value="thu"/> Thursday<br/>
+              <input type="checkbox" name="" value="fri"/> Friday<br/>
+              <input type="checkbox" name="" value="sat"/> Saturday<br/>
+              <input type="checkbox" name="" value="sun"/> Sunday<br/>
+              <hr class="my-4">
+              <input type="checkbox" name="" value="action" /> Action<br />
+              <input type="checkbox" name="" value="action" /> Drama<br />
+              <input type="checkbox" name="" value="action" /> Horror<br />
+              <input type="checkbox" name="" value="action" /> Comedy<br />
+              <input type="checkbox" name="" value="action" /> Animation<br />
+              <input type="checkbox" name="" value="action" /> Documentary<br />
+              <input type="checkbox" name="" value="action" /> Fiction<br />
+            </ul>
+          </div>
+
+          <a class="search-btn" href="#">Search</a>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="movielist">
+          <div class="list-group">
+            {% for movie in movie_list %}
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="row">
+                <div class="col-md-3">
+                  <img class="poster" src="https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/3/36/Black_Panther_Poster.jpg/revision/latest?cb=20171207153752&format=original" />
+                </div>
+                <div class="col-md-9">
+                  <h5 class="mb-1">{{movie.title}} {{movie.date}}</h5>
+                  <small>33 people want to watch</small>
+                  <p class="mb-1">{{movie.summary}}</p>
+                  <small>{{movie.director}}</small><br />
+                  <small>Stars: {{movie.cast}} </small>
+                </div>
+
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>
