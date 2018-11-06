@@ -8,7 +8,7 @@ from .models import Match
 ##picture of movie; urls for movie and username and index; using function instead of class
 ##what does match need; what primary key of movie; hard for users to remember id
 def index(request):
-    movie_list = Movie.objects.all()##can probably use a filter function with date somehow
+    movie_list = Movie.objects.all().order_by('-date')[:25]
     context = {
             "movie_list": movie_list}
     return render(
