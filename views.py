@@ -56,8 +56,8 @@ def matchbox(request, username, date, location):
     matchbox_objects = Request.objects.filter(username = username, date=date, location=location)
     matchbox_object = matchbox_objects.first()
     ##needs to have related name in model
-    movie = matchbox_object_movieset.all().first()
-    user = matchbox_object_userset.all().first()
+    movie = matchbox_object_movie_set.all().first()
+    user = matchbox_object_user_set.all().first()
     str = "matchbox/"## + movie_name
     context={
             "title": movie.title
@@ -82,7 +82,6 @@ def request(request):
     str = "request/"## + movie_name
     movie = request_object_movie_set.all().first()
     user = request_object_user_set.all().first()
-    str = "matchbox/"## + movie_name
     context={
             "title": movie.title
             "cast": movie.cast
