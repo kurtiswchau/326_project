@@ -50,6 +50,7 @@
 					<td>Fantasy</td>
 					<td>9</td>
 			</table>
+			<!--not going to be possible too much information to store and organize-->
 			<div>
 				<p style="font-size: 24px">FAVORITE MOVIES:</p>
 				<img src="harrypotter.jpg" style = "width: 30%; display: inline-block; padding-right: 25px">
@@ -57,11 +58,10 @@
 			</div>
 		</div>
 		<div class = column style="margin-left: 50px">
-			<img src="profilepic.jpeg" style="width:75%; margin:auto; display: block">
+			<!--needs the full url currently assuming pic in same folder as this html file-->
+			<img src="{{pic}}" style="width:75%; margin:auto; display: block">
 			<div id = bio>
-				<p>Hello! Yes, I know my profile picture is a tree. Long story. Anyways, I'm a pretty casual movie goer, but only because of time. Now
-				that I got the time to watch more, I'm not exactly sure how to go about it. I thought this site would be a pretty good place to start.
-				I can enjoy movies of almost any genre except horror. Anyone reading this, feel free to send me an invite.</p>
+				<p>{{bio}}</p>
 			</div>
 		</div>
 	</body>
