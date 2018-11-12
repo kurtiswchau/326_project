@@ -1,0 +1,39 @@
+.movie-container {
+	width: 90%;
+	margin-left: 50px;
+}
+.movie-container img {
+	height: 450px;
+	width: 700px;
+	margin: 5px 0px 30px 0px;
+	border: solid 3px white;
+	border-radius: 30px;
+}
+.movie-title {
+	text-align: left;
+	color: orange;
+	font-size: 80px;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+.movie-container p {
+	color: white;
+    font-weight: normal;
+}
+.request-list {
+	width: 100%;
+	border: 2px solid white;
+}
+.request-match {
+	color: white;
+	width: 100%;
+	margin-bottom: 50px;
+}
+.request-match tr th {
+	color: orange;
+	font-weight: bolder;
+	font-size: 30px;
+}
+.request-match label {
+	font-weight: bold;
+}

@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="user-name">
+	<img id="user-pic" src="../../static/images/profilepic.jpeg" alt="Avatar">
+	<h1>{{name}}</h1>
+</div>
+
+<div class="user-bio">
+	<p>{{bio}}</p>
+</div>
+
+<div class="fav-movie">
+	<h4>FAVORITE MOVIES:</h4>
+	<ul class="fav-movie-list">
+		<img src="../../static/images/deadpool.jpg">
+		<img src="../../static/images/harrypotter.jpg">
+	</ul>
+</div>
+{% endblock %}

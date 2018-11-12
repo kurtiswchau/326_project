@@ -3,9 +3,9 @@ body {
   height: auto;
   background: black;
 }
-.navbar {
-
-}
+/* 
+index css
+*/
 .title {
   text-align: center;
 }
@@ -64,3 +64,6 @@ body {
   height: 165px;
   margin-left: 20px;
 }
+
+
+

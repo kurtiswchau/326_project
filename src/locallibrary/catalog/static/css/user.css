@@ -1,0 +1,38 @@
+/*
+user css
+*/
+#user-pic {
+  height: 300px;
+  width: 450px;
+  margin-top: 30px;
+  border-radius: 50%;
+}
+.user-name {
+	text-align: center;
+}
+.user-name h1 {
+  	color: orange;
+    font-weight: bold;
+    padding: 30px 0px;
+}
+
+.user-bio {
+	padding: 5px 100px 5px 100px;
+}
+
+.user-bio p {
+	color: white;
+	padding: 10px 100px 10px 100px;
+}
+
+.fav-movie h4 {
+  	color: orange;
+    font-weight: bold;
+    padding: 30px 0px 10px 60px;
+}
+
+.fav-movie-list img {
+  height: 400px;
+  width: 270px;
+  margin: 10px 10px 10px 60px;
+}
