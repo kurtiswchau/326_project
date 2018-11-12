@@ -1,7 +1,7 @@
-"""KnockOut URL Configuration
+"""locallibrary URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.0/topics/http/urls/
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -25,12 +25,14 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('index/', include('catalog.urls')),
+    path('catalog/', include('catalog.urls')),
 ]
 
 urlpatterns += [
-    path('', RedirectView.as_view(url='index/')),
+    path('', RedirectView.as_view(url='/catalog/')),
 ]
 
-
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+

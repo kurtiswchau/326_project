@@ -41,9 +41,10 @@
         {% if movie_list %}
           <div class="movielist">
             <div class="list-group">
-              <a href="{% url 'movies' %}" class="list-group-item list-group-item-action flex-column align-items-start">
+              
                 <div class="row">
                 {% for movie in movie_list %}
+                <a href="{% url 'movie' movie.movie_id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 	<div class="col-md-3">
                 		<img class="poster" src="#">
                 	</div>
@@ -52,8 +53,10 @@
                 		<p class="mb-1">{{movie.summary}}</p>
                 		<small>Director: {{movie.director}}</small>
                 		<small>Cast: {{movie.cast}}</small>
-                	</div>
+                  </div>
+                </a>
                 {% endfor %}
+                </div>
               </a>
             </div>
           </div>

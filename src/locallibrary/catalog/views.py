@@ -12,8 +12,8 @@ def index(request):
 	}
 	return render(request, "index.html", context=context)
 
-def movie(request, title, director):
-	movie_objects = Movie.objects.filter(title=title, director=director)
+def movie(request, movie_id):
+	movie_objects = Movie.objects.filter(movie_id=movie_id)
 	movie_object = movie_objects.first()
 	request_objects = Request.objects.filter(movie=movie_object)
 	match_objects = Match.objects.filter(movie=movie_object)
@@ -26,15 +26,18 @@ def movie(request, title, director):
 		"summary" : movie_object.summary,
 		"request_list" : request_objects,
 		"match_list" : match_objects,
+		"movie_id": movie_object.movie_id,
 	}
 	return render(request, "movie.html", context=context)
 
-def user(request, userid):
-	user_objects = User.objects.filter(id=userid)
+def user(request, username):
+	user_objects = User.objects.filter(username=username)
 	user_object = user_objects.first()
 	context = {
 		"username" : user_object.username,
 		"bio" : user_object.bio,
-		"pic" : user_object.picutre_url,
+		"pic" : user_object.picture_url,
 	}
 	return render(request, "user.html", context=context)
+
+		

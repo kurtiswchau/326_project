@@ -1,20 +1,11 @@
+
 from django.db import models
+from django_mysql.models import ListTextField
 from django.urls import reverse
-
-
-class Genre(models.Model):
-    """Model representing a book genre."""
-    name = models.CharField(
-        max_length=200, help_text="Enter a book genre (e.g. Science Fiction)"
-    )
-
-    def __str__(self):
-        """String for representing the Model object."""
-        return self.name
 
 class Movie(models.Model):
     """Model representing a movie (but not a specific copy of a movie)."""
-    movie_id = models.BigIntegerField(default=111111)
+
     title = models.CharField(max_length=200)
     cast = models.CharField(max_length=200)
     director = models.CharField(max_length=200)
@@ -23,8 +14,10 @@ class Movie(models.Model):
     )
     duration = models.CharField(max_length=200)
     date = models.DateField(null=True, blank=True)
-    genre = models.ManyToManyField(Genre, help_text="Select a genre for this movie")
-    picture_url = models.CharField(max_length=300,default="https://test.jpg")
+    genre = ListTextField(
+        base_field=models.CharField(max_length=10),
+        size=100,  # Maximum of 100 ids in list
+    )
     def __str__(self):
         """String for representing the Model object."""
         return self.title
@@ -40,7 +33,7 @@ class Request(models.Model):
     location = models.CharField(max_length=300)
     # A date field for when the request happen.
     date = models.DateField(null=True, blank=True)
-    number_people = models.IntegerField()
+    number_people = models.IntegerField(max_length=3)
     movie = models.ForeignKey("Movie", on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
@@ -50,9 +43,10 @@ class Request(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=300)
     gender = models.CharField(max_length=300)
-    password = models.CharField(max_length=300)
+    password = models.CharField(max_lenght=300)
+    id = models.CharField(max_length=300)
     bio = models.CharField(max_length=300)
-    picture_url = models.CharField(max_length=300,default="https://test.jpg")
+    pic = models.ImageField(upload_to='picpath/', default = 'pic_folder/None/no-img.jpg', blank=True, null=True)
 
     def __str__(self):
         return self.username
@@ -61,7 +55,7 @@ class User(models.Model):
 class Match(models.Model):
     username = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
     request = models.ForeignKey("Request", on_delete=models.SET_NULL, null=True)
-    movie = models.ForeignKey("Movie", on_delete=models.SET_NULL, null=True)
+
     def __str__(self):
         return f"{self.username}, {self.request}"
     

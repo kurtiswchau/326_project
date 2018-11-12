@@ -9,7 +9,7 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ["title","cast","director","summary","duration","date","picture_url"]
+    list_display = ["title","cast","director","summary","duration","date","picture_url","movie_id"]
     list_filter = ["genre"]
 
 @admin.register(Request)
