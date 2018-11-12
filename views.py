@@ -25,12 +25,13 @@ def movie(request, title=None, director=None):
     movie_object = movie_objects.first()
     str = "movie/"## + movie_name
     context={
-            "title": movie_object.title
-            "cast": movie_object.cast
-            "director": movie_object.director
-            "summary": movie_object.summary
-            "duration": movie_object.duration
-            "date": movie_object.date
+            "title": movie_object.title,
+            "cast": movie_object.cast,
+            "director": movie_object.director,
+            "summary": movie_object.summary,
+            "duration": movie_object.duration,
+            "date": movie_object.date,
+            "pic": movie_object.picture_url,
             }
     return render(
             request,
@@ -42,9 +43,9 @@ def user(request, userid=None):
     user_object = user_objects.first()
     str = "user/"## + str(user_id)
     context={
-            "username" = user_object.username
-            "bio" = user_object.bio
-            "pic" = user_object.pic
+            "username" : user_object.username,
+            "bio" : user_object.bio,
+            "pic" : user_object.picture_url,
             }
     return render(
             request,
@@ -60,15 +61,15 @@ def matchbox(request, username, date, location):
     user = matchbox_object.user_set.all().first()
     str = "matchbox/"## + movie_name
     context={
-            "title": movie.title
-            "cast": movie.cast
-            "director": movie.director
-            "summary": movie.summary
-            "duration": movie.duration
-            "date": movie.date
-            "username" = user.username
-            "bio" = user.bio
-            "pic" = user.pic
+            "title": movie.title,
+            "cast": movie.cast,
+            "director": movie.director,
+            "summary": movie.summary,
+            "duration": movie.duration,
+            "date": movie.date,
+            "username" : user.username,
+            "bio" : user.bio,
+            "pic" : user.picture_url,
             ##"matchStatus" = matchbox_object.matchStatus
             }
     return render(
@@ -83,16 +84,16 @@ def request(request):
     movie = request_object.movie_set.all().first()
     user = request_object.user_set.all().first()
     context={
-            "title": movie.title
-            "cast": movie.cast
-            "director": movie.director
-            "summary": movie.summary
-            "duration": movie.duration
-            "date": movie.date
-            "username" = user.username
-            "bio" = user.bio
-            "pic" = user.pic
-            "requestStatus" = request_object.requestStatus
+            "title": movie.title,
+            "cast": movie.cast,
+            "director": movie.director,
+            "summary": movie.summary,
+            "duration": movie.duration,
+            "date": movie.date,
+            "username" : user.username,
+            "bio" : user.bio,
+            "pic" : user.picture_url,
+            ##"requestStatus" : request_object.requestStatus,
             }
     return render(
             request,
