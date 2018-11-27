@@ -12,6 +12,8 @@ Long To
 Frick Shao
 Kurtis Chau
 
+Version to review: project2_v1.0
+
 Video Link: A link to your YouTube video regarding this submission. See below.
 Design Overview: A design overview of your data model as implemented in Django, the important URL routes, and the implemented UI views. Please provide enough detail to demonstrate your team’s understanding of the material. 
 As a design overview of our data model, as it is implemented in Django: the important UI views through this is index, user profile, movie request page, and movie matchbox page. The data model mock data includes The important URL path included are: 
@@ -19,13 +21,13 @@ As a design overview of our data model, as it is implemented in Django: the impo
    path("index/", views.index, name="index"), #movie list page
 
 
-   path("movie/<str:movie>/", views.movie, name="movie"),
+   path("index/movie/<int:movie_id>/", views.movie, name="movie"),
 
 
-   path("user/<str:user>", views.user, name="user"),
+   path("index/user/<str:username>", views.user, name="user"),
 
 
-   path("matchbox/", views.matchbox, name="matchbox"),
+   path("index/matchbox/", views.matchbox, name="matchbox"),
 
 
 

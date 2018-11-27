@@ -46,7 +46,7 @@
                 {% for movie in movie_list %}
                 <a href="{% url 'movie' movie.movie_id %}" class="list-group-item list-group-item-action flex-column align-items-start">
                 	<div class="col-md-3">
-                		<img class="poster" src="#">
+                		<img class="poster" src="{{movie.picture_url}}">
                 	</div>
                 	<div class="col-md-9">
                 		<h5 class="mb-1">{{movie.title}}</h5>

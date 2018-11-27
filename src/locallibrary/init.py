@@ -36,7 +36,7 @@ for i in range(0, 10):
     m_date = fake.past_date(start_date="-30d", tzinfo=None)
     m_picture_url = "https://res.cloudinary.com/dbgclcola/image/upload/v1541981429/deadpool.jpg"
     movie = Movie(
-        title=m_title, cast=m_cast, director=m_director, summary=m_summary, duration=m_duration, date=m_date, movie_id=m_id
+        title=m_title, cast=m_cast, director=m_director, summary=m_summary, duration=m_duration, date=m_date, movie_id=m_id, picture_url = m_picture_url
     )
     movie.save()
     movie.genre.add(genres[fake.random_int(0, len(genres)) - 1])
