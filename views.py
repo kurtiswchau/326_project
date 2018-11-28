@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as django_login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import permission_required
 ##picture of movie; urls for movie and username and index; using function instead of class
 ##what does match need; what primary key of movie; hard for users to remember id
 def index(request):
@@ -33,7 +34,8 @@ def movie(request, movie_id):
 		"picture_url": movie_object.picture_url
 	}
 	return render(request, "movie.html", context=context)
-
+#not sure exactly what the path is; also if we want the movie addition page to be separate need to put this on there instead of here
+@permission_required('models.py')
 def user(request, username):
 	user_objects = User.objects.filter(username=username)
 	user_object = user_objects.first()
