@@ -27,10 +27,10 @@
       Flick
     </a>
     {% if user.is_authenticated %}
-	    <p>User: {{user.get_username}}</p>
-	    <p <a href=”{%url ‘logout’%}?next={{request.path}}”>Logout</a></p>
+	    <p class="navbar-brand">User: {{user.get_username}}</p>
+	    <a class="navbar-brand" href=”{%url ‘logout’%}?next={{request.path}}”>Logout</a></p>
     {% else %}
-	    <p><a href= “{% url ‘login’ %}?next={{request.path}}”>Login</a></p>
+	    <a class="navbar-brand" href= “{% url ‘login’ %}?next={{request.path}}”>Login</a></p>
     {endif %}
   </nav>
   {% block content %}{% endblock %}
