@@ -88,6 +88,22 @@ for movie in Movie.objects.all():
     print(f"Director: {movie.director}")
     print(f"Summary:\n{movie.summary}")
 
+user1 = adminUser.objects.create_user("user1","user1@326.edu","user1password")
+user1.save()
+user1.profile.bio = "user1 bio"
+user1.profile.gender = "user1 gender"
+user1.profile.picture_url = "https://res.cloudinary.com/dbgclcola/image/upload/v1541982429/profilepic.jpg"
+user1.profile.profileUsername = "user1"
+user1.save()
+
+user1 = adminUser.objects.create_user("user2","user2@326.edu","user2password")
+user1.save()
+user1.profile.bio = "user2 bio"
+user1.profile.gender = "user2 gender"
+user1.profile.picture_url = "https://res.cloudinary.com/dbgclcola/image/upload/v1541982429/profilepic.jpg"
+user1.profile.profileUsername = "user2"
+user1.save()
+
 
 username = "admin"
 password = "admin"

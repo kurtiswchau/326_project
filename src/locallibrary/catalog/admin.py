@@ -14,11 +14,11 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ("username","first_name","last_name","location","date","number_people","movie")
+    list_display = ("username","location","date","time","number_people","movie")
 
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ("username","request")
+    list_display = ("usernames","request")
 
 @admin.register(Profile)
 class UserAdmin(admin.ModelAdmin):

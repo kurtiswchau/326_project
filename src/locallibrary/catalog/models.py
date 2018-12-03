@@ -36,20 +36,21 @@ class Movie(models.Model):
 class Request(models.Model):
     """Model representing a request."""
     username = models.ForeignKey("Profile", on_delete=models.SET_NULL, null=True)
-    # A character field for the first name.
-    first_name = models.CharField(max_length=100)
+    # # A character field for the first name.
+    # first_name = models.CharField(max_length=100)
 
-    # A character field for the last name.
-    last_name = models.CharField(max_length=100)
+    # # A character field for the last name.
+    # last_name = models.CharField(max_length=100)
     location = models.CharField(max_length=300)
     # A date field for when the request happen.
     date = models.DateField(null=True, blank=True)
     number_people = models.IntegerField()
     movie = models.ForeignKey("Movie", on_delete=models.SET_NULL, null=True)
-    
+    time = models.TimeField(blank=True,null=True)
+    note = models.CharField(max_length=100, blank=True,null=True)
     def __str__(self):
         """String for representing the Model object."""
-        return f"{self.last_name}, {self.first_name}"
+        return f"{self.username};{self.movie};{self.note}"
 
 class Profile(models.Model):
     profileUsername = models.CharField(max_length=300)
@@ -57,7 +58,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=300)
     bio = models.CharField(max_length=300)
     picture_url = models.CharField(max_length=300,default="https://test.jpg")
-
+    
     def __str__(self):
         return self.profileUsername
 
@@ -69,7 +70,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     
 
 class Match(models.Model):
-    username = models.ForeignKey("Profile", on_delete=models.SET_NULL, null=True)
+    usernames = models.CharField(max_length=200,null=True)
     request = models.ForeignKey("Request", on_delete=models.SET_NULL, null=True)
     movie = models.ForeignKey("Movie", on_delete=models.SET_NULL, null=True)
     def __str__(self):

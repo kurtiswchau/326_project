@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from catalog.models import Profile,Genre
+from catalog.models import Profile,Genre, Request
 
 
 class SignUpForm(UserCreationForm):
@@ -22,6 +22,16 @@ class EditProfileForm(forms.Form):
     class Meta:
         model = Profile
         fields = ('bio','picture_url','gender')
+
+class RequestForm(forms.Form):
+    date = forms.DateField()
+    time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
+    location = forms.CharField(max_length=200, help_text='Say something!')
+    number_people = forms.IntegerField()
+    note = forms.CharField(max_length=100,required=False)
+    class Meta:
+        model = Request
+        fields=('date','time','location','number_people','note')
 
 class DateInput(forms.DateInput):
     input_type = 'date'

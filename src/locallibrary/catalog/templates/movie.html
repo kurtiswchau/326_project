@@ -19,53 +19,71 @@
 
     {% if request_list %}
       <div class="request-list">
+        <h4>Pending Requests:</h4>
         {% for request in request_list %}
         <div class="request-item">
-          <p class="req-username">{{request.first_name}} {{request.last_name}}</p>
-          <p class="req-date">{{request.date}}</p>
-          <p class="req-time">{{request.time}}</p>
-          <p class="req-location">{{request.location}}</p>
-          <p class="req-max-people">{{request.number_people}}</p>
+          <p class="req-username">User: {{request.username}}</p>
+          <p class="req-date">Date: {{request.date}}</p>
+          <p class="req-time">Time: {{request.time}}</p>
+          <p class="req-location">Location: {{request.location}}</p>
+          <p class="req-max-people">Max number of people: {{request.number_people}}</p>
+          <p class="req-max-people">Note: {{request.note}}</p>  
+          <form method="POST">
+              {% csrf_token %}
+              <div class="join">
+          <button class="btn join-btn" type="submit" value="{{request}}" name="join request">Join</button>      
+              </div>
+        </form>
         </div>
         {% endfor %}
       </div>
     {% else %}
       <p>There are no requests for the movie.</p>
     {% endif %}
-
+<!-- 
     <table class="request-match container-fluid row">
       <tr><th class="col-lg-6">REQUEST</th><th class="col-lg-6">MATCH</th></tr>
       <tr>
         <td>
-          <form>
+          <form method="POST">
+            {% csrf_token %}
             <div class="form-group">
               <label>Max Co-Watcher Limit:</label>
-              <select class="form-control" id="exampleFormControlSelect1">
+              <select class="form-control" name="req_number">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
+                <option>6</option>
               </select>
             </div>
             <div class="form-group">
                 <label class="control-label" for="date">Date:</label>
-                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/> 
+                <input class="form-control" id="date" name="req_date" placeholder="MM/DD/YYY" type="date"/> 
             </div>
             <div class="form-group">
                 <label class="control-label" for="time">Time:</label>
-                <input class="form-control" type="time" name="usr_time">
+                <input class="form-control" type="time" name="req_time">
             </div>
             <div class="form-group">
-              <label>Location:</label>
-              <textarea class="form-control" id="formControlTextarea1" rows="1"></textarea>
+                <label class="control-label" for="location">Location:</label>
+                <input class="form-control" type="text" name="req_location">
             </div>
+            <div class="form-group">
+                <label class="control-label" for="note">Note:</label>
+                <input class="form-control" type="text" name="req_note">
+            </div>
+            <button class="btn btn-warning"" type="submit" value="new request" name="new request">Submit</button>
+            </form>
+            
         </td>
-        <td>
+
+        <td class="match-box">
           {% if match_list %}
             {% for match in match_list %}
               <div class="match-item">
-                <p class="match-username">{{match.request.first_name}} {{match.request.last_name}}</p>
+                <p class="match-username">{{match.usernames}}</p>
                 <p class="match-date">{{match.request.date}}</p>
                 <p class="match-time">{{match.request.time}}</p>
                 <p class="match-location">{{match.request.location}}</p>
@@ -74,11 +92,66 @@
           {% endif %}
         </td>
       </tr>
-      <tr>
-      	<td><button class="btn btn-warning"" type="button">Submit</button></td>
-      	<td></td>
-      </tr>
-    </table>
+    </table> -->
+    <!-- !!!!!!!!!!!!!!!!!!! -->
+    <div class="req-match">
+      <div class="req-box">
+        <h2 class="box-title">REQUEST</h2>
+          <form method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Max Co-Watcher Limit:</label>
+                <select class="form-control" name="req_number">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="date">Date:</label>
+                  <input class="form-control" id="date" name="req_date" placeholder="MM/DD/YYY" type="date"/> 
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="time">Time:</label>
+                  <input class="form-control" type="time" name="req_time">
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="location">Location:</label>
+                  <input class="form-control" type="text" name="req_location">
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="note">Note:</label>
+                  <input class="form-control" type="text" name="req_note">
+              </div>
+              <button class="btn btn-warning" type="submit" value="new request" name="new request">Submit</button>
+              </form>
+
+      </div>
+      <div class="match-box">
+        <h2 class="box-title">MATCH</h2>
+          {% if match_list %}
+          {% for match in match_list %}
+            <div class="match-item">
+              <p class="match-username">{{match.usernames}}</p>
+              <p class="match-date">{{match.request.date}}</p>
+              <p class="match-time">{{match.request.time}}</p>
+              <p class="match-location">{{match.request.location}}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+    </div>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+
+
+    
   </div>
 
 {% endblock %}

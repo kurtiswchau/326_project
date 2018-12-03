@@ -24,12 +24,84 @@
 	color: white;
 	width: 100%;
 	margin-bottom: 50px;
+	margin-left:20px;
+	margin-right:20px;
 }
 .request-match tr th {
 	color: orange;
 	font-weight: bolder;
 	font-size: 30px;
+	padding:20px;
 }
 .request-match label {
 	font-weight: bold;
+}
+
+.request-list {
+	width:100%;
+	border: 2px solid orange;
+	border-radius:25px;
+	padding:10px 20px 20px 20px;
+	table-layout: fixed;
+}
+
+.request-item{
+	width:20%;
+	background:white;
+	box-shadow: 0px 0px 20px 5px orange;
+	border-radius: 10px;
+	padding:5px;
+	display:inline-block;
+	margin-right:10px;
+}
+.request-item p{
+	color:black;
+}
+
+.match-box{
+	margin-left:30px;
+
+}
+
+.req-match{
+	width:100%;
+	padding:20px 30px 20px 30px;
+
+}
+
+.req-match h2{
+	text-align: center;
+	margin-bottom:20px;
+	color: orange;
+	font-weight: bolder;
+	font-size: 30px;
+	
+}
+
+
+.req-box{
+	width:30%;
+	float: left;
+	margin-left:30px;
+}
+
+.match-box{
+	width:30%;
+	float: right;
+	margin-right:30px;
+}
+.match-box div{
+	border: solid 2px white;
+	border-radius: 10px;
+	padding:10px 20px 10px 20px;
+}
+
+.join{
+	text-align: center;
+	margin:0 auto;
+}
+
+.join-btn{
+	display:inline-block;
+	
 }

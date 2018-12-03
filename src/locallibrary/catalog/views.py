@@ -15,7 +15,7 @@ from django.views.generic import UpdateView
 from django.utils.decorators import method_decorator
 # from catalog.models import Profile
 from django.shortcuts import render, redirect
-from catalog.forms import SignUpForm, EditProfileForm, GenreFilterForm
+from catalog.forms import SignUpForm, EditProfileForm, GenreFilterForm, RequestForm
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -51,25 +51,64 @@ def index(request):
     return render(request, "index.html", context=context)
 
 def movie(request, movie_id):
-	movie_objects = Movie.objects.filter(movie_id=movie_id)
-	movie_object = movie_objects.first()
-	request_objects = Request.objects.filter(movie=movie_object)
-	match_objects = Match.objects.filter(movie=movie_object)
-	context = {
-		"title" : movie_object.title,
-		"director" : movie_object.director,
-		"cast" : movie_object.cast,
-		"date" : movie_object.date,
+    movie_objects = Movie.objects.filter(movie_id=movie_id)
+    movie_object = movie_objects.first()
+    if(request.method=='POST' and "new request" in request.POST):
+        data = request.POST
+        display_text="new req"
+        display_text+=(data["req_number"]+" "+data["req_date"]+" "+data["req_time"]+" "+data["req_location"]+" "+data["req_note"])
+        req = Request(username=request.user.profile,
+                location=data["req_location"],
+                number_people=int(data["req_number"]),
+                date = data["req_date"],
+                time = data["req_time"],
+                note = data["req_note"],
+                movie = movie_object
+                )
+        req.save()
+    if(request.method=='POST' and "join request" in request.POST):
+        data = request.POST
+        joined_req_str_lst = request.POST.get('join request').split(";")
+        print(joined_req_str_lst)
+        request_user = Profile.objects.get(profileUsername=joined_req_str_lst[0])
+        joined_req = Request.objects.get(movie=movie_object,username=request_user)
+        print(joined_req)
+        existing_match = Match.objects.filter(request=joined_req)
+        if(existing_match.exists()):
+            old_match = Match.objects.get(request=joined_req)
+            new_usernames = old_match.usernames+" "+request.user.profile.profileUsername 
+            old_match.usernames = new_usernames
+            old_match.save()
+        else:
+            new_match = Match(usernames=joined_req.username.profileUsername+" "+request.user.profile.profileUsername,
+                        request = joined_req,
+                        movie = movie_object
+                        )
+            new_match.save()
+        display_text = joined_req_str_lst
+    else:
+        display_text = "no req"
+    
+    request_objects = Request.objects.filter(movie=movie_object)
+    match_objects = Match.objects.filter(movie=movie_object)
+    requestForm = RequestForm()
+    context = {
+        "title" : movie_object.title,
+        "director" : movie_object.director,
+        "cast" : movie_object.cast,
+        "date" : movie_object.date,
         "day_of_week" : movie_object.date.weekday(),
-		"duration" : movie_object.duration,
-		"summary" : movie_object.summary,
-		"request_list" : request_objects,
-		"match_list" : match_objects,
-		"movie_id": movie_object.movie_id,
-		"picture_url": movie_object.picture_url,
+        "duration" : movie_object.duration,
+        "summary" : movie_object.summary,
+        "request_list" : request_objects,
+        "match_list" : match_objects,
+        "movie_id": movie_object.movie_id,
+        "picture_url": movie_object.picture_url,
         "genre" : movie_object.get_genres(),
-	}
-	return render(request, "movie.html", context=context)
+        "request_form":requestForm,
+        "display_text":display_text,
+    }
+    return render(request, "movie.html", context=context)
 
 def profile(request, profileUsername):
     if request.method == 'POST':
