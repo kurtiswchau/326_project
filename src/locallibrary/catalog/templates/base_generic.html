@@ -27,11 +27,11 @@
       Flick
     </a>
     {% if user.is_authenticated %}
-      <p class="navbar-brand">User: <a href="{% url 'user' user.get_username%}">{{user.get_username}}</a></p>
-      <a class="navbar-brand" href="{% url 'logout' %}">Logout</a></p>
+      <a class="navbar-brand" id="user-tag" href="{% url 'user' user.get_username%}">User: {{user.get_username}}</a>
+      <a class="navbar-brand" href="{% url 'logout' %}" id="user-tag">Logout</a></p>
     {% else %}
-      <a class="navbar-brand" href= "{% url 'login' %}">Login</a></p>
-      <a class="navbar-brand" href= "{% url 'signup' %}">Sign up</a></p>
+      <a class="navbar-brand" href= "{% url 'login' %}" id="user-tag">Login</a></p>
+      <a class="navbar-brand" href= "{% url 'signup' %}" id="user-tag">Sign up</a></p>
     {% endif %}
   </nav>
   {% block content %}{% endblock %}
