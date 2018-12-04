@@ -57,7 +57,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=300)
     bio = models.CharField(max_length=300)
-    picture_url = models.CharField(max_length=300,default="https://test.jpg")
+    picture_url = models.CharField(max_length=300,default="https://res.cloudinary.com/dbgclcola/image/upload/v1541982429/profilepic.jpg")
     
     def __str__(self):
         return self.profileUsername

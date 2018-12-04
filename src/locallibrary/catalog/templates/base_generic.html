@@ -31,6 +31,7 @@
       <a class="navbar-brand" href="{% url 'logout' %}">Logout</a></p>
     {% else %}
       <a class="navbar-brand" href= "{% url 'login' %}">Login</a></p>
+      <a class="navbar-brand" href= "{% url 'signup' %}">Sign up</a></p>
     {% endif %}
   </nav>
   {% block content %}{% endblock %}
