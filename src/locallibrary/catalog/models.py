@@ -74,6 +74,6 @@ class Match(models.Model):
     request = models.ForeignKey("Request", on_delete=models.SET_NULL, null=True)
     movie = models.ForeignKey("Movie", on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.username}, {self.request}"
+        return f"{self.usernames}, {self.request}"
     
 

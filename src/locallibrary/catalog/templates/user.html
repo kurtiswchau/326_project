@@ -7,12 +7,14 @@
 </div>
 
 <div class="user-bio">
+	<h4 class="bio-label">Gender: </h4>
 	<p>{{gender}}</p>
+	<h4 class="bio-label">Bio: </h4>
 	<p>{{bio}}</p>
 	
 </div>
 {% if request.user.profile.profileUsername == profileUsername %}
-<div class="fav-movie">
+<div class="user-editForm">
 	<form method="post">
 	{% csrf_token %}	
 	{% for field in form %}
@@ -24,11 +26,22 @@
           {% endif %}
         </p>
 	{% endfor %}
-	<button class="signup-btn" type="submit">Edit Profile</button>
+	<button class="signup-btn btn" type="submit">Edit Profile</button>
     </form>
 </div>
 {% endif %}
-
+<div class="match-list">
+	<h4>Upcoming Matches</h4>
+	{% if match_list %}
+	{% for m in match_list %}
+	<div class="match-item">
+		<h5>{{m.movie}}</h5><br />
+		{{m.request.date}}<br />
+		{{m.request.time}}
+	</div>
+	{% endfor %}
+	{% endif %}
+</div>
 <div class="fav-movie">
 	<h4>FAVORITE MOVIES:</h4>
 	<ul class="fav-movie-list">

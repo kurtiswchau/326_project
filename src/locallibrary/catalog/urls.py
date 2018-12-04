@@ -10,7 +10,7 @@ urlpatterns = [
     path("movie/<int:movie_id>", views.movie,name="movie"),
     # path("movie/<int:pk>", views.MovieDetailView.as_view(), name="movie-detail"),
 
-    path("user/<str:profileUsername>", views.profile,name=""), # took out name
+    path("user/<str:profileUsername>", views.profile,name="user"), # took out name
     path("loginRedirect",views.loginRedirect),
 
 ]

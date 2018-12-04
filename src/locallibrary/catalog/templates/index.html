@@ -9,7 +9,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
-        <input id="searchbar" type="text" name="search" placeholder="Tell me what you're looking for.." />
+        <div class="search-box">
+        <form method="POST">
+          {% csrf_token %}
+        <input id="searchbar" type="text" name="search_word" placeholder="Tell me what you're looking for.." />
+        <button class="btn" type="submit" value="search" name="search">Search</button>
+      </form>
+    </div>
         <div class="filter" >
           
           {{display_text}}
@@ -18,7 +24,7 @@
             <form method="post">
               {% csrf_token %}	
               {{genreFilterForm}}
-              <button  type="submit">Apply</button>
+              <button  class="btn" type="submit" value="genre_filter" name="genre_filter">Apply</button>
             </form>
           </div>
           <!-- <form method="POST">
@@ -51,8 +57,8 @@
                 	<div class="col-md-9">
                 		<h5 class="mb-1">{{movie.title}}</h5>
                     <p class="mb-1">{{movie.summary}}</p>
-                    <small>Genre: {{movie.get_genres}}</small>
-                		<small>Director: {{movie.director}}</small>
+                    <small>Genre: {{movie.get_genres}}</small></br>
+                		<small>Director: {{movie.director}}</small></br>
                 		<small>Cast: {{movie.cast}}</small>
                   </div>
                 </a>
@@ -62,7 +68,7 @@
             </div>
           </div>
         {% else %}
-        	<p>There are no movies in the library.</p>
+        	<p>There are no movies of this genre.</p>
         {% endif %}
       </div>
     </div>

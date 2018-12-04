@@ -84,3 +84,8 @@ index css
 .small-label {
   color:orange;
 }
+
+.search-box{
+  display: inline-block;
+  margin-bottom: 20px;
+}

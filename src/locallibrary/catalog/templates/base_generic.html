@@ -27,7 +27,7 @@
       Flick
     </a>
     {% if user.is_authenticated %}
-      <p class="navbar-brand">User: {{user.get_username}}</p>
+      <p class="navbar-brand">User: <a href="{% url 'user' user.get_username%}">{{user.get_username}}</a></p>
       <a class="navbar-brand" href="{% url 'logout' %}">Logout</a></p>
     {% else %}
       <a class="navbar-brand" href= "{% url 'login' %}">Login</a></p>

@@ -24,7 +24,11 @@ from django.template import RequestContext
 
 
 def index(request):
-    if request.method == 'POST':
+    if request.method=='POST' and 'search' in request.POST:
+        search_word = request.POST['search_word']
+        print(search_word)
+        movie_list = Movie.objects.all().filter(title__contains=search_word)
+    elif request.method == 'POST' and 'genre_filter' in request.POST:
         if(len(request.POST.getlist('genres'))==0):
             movie_list = Movie.objects.all().order_by('-date')[:25]
         else:
@@ -51,6 +55,8 @@ def index(request):
     return render(request, "index.html", context=context)
 
 def movie(request, movie_id):
+    if(request.method=='POST' and not request.user.is_authenticated):
+        return redirect('login')
     movie_objects = Movie.objects.filter(movie_id=movie_id)
     movie_object = movie_objects.first()
     if(request.method=='POST' and "new request" in request.POST):
@@ -121,6 +127,9 @@ def profile(request, profileUsername):
             user.save()
     user_objects = Profile.objects.filter(profileUsername=profileUsername)
     user_object = user_objects.first()
+    
+    match_list = Match.objects.filter(usernames__contains=user_object.profileUsername)
+
     if request.user.username==user_object.profileUsername:
         context = {
             "profileUsername" : user_object.profileUsername,
@@ -128,6 +137,7 @@ def profile(request, profileUsername):
             "pic" : user_object.picture_url,
             "gender" : user_object.gender,
             "form" : EditProfileForm,
+            "match_list" : match_list
         }
     else:   
         context = {
@@ -135,19 +145,26 @@ def profile(request, profileUsername):
             "bio" : user_object.bio,
             "pic" : user_object.picture_url,
             "gender" : user_object.gender,
+            "match_list":match_list
         }
     return render(request, "user.html", context = context)
 
 
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
-        return redirect('index')
-    else:
-        form = AuthenticationForm()
-    return render(request, "login.html", {'form': form})
+# def login_view(request):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request.POST)
+#         return redirect('index')
+#     else:
+#         form = AuthenticationForm()
+#     return render(request, "login.html", {'form': form})
 
-
+# def post_login_view(request,movie_id):
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request.POST)
+#         return redirect('movie', args=(movie_id,))
+#     else:
+#         form = AuthenticationForm()
+#     return render(request, "post_login.html", {'form': form})
 		
 def signup(request):
     if request.method == 'POST':
@@ -172,3 +189,4 @@ def loginRedirect(request):
     return HttpResponseRedirect(
                reverse(profile, 
                        args=[request.user.username]))
+

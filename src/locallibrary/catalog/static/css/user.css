@@ -2,8 +2,8 @@
 user css
 */
 #user-pic {
-  height: 300px;
-  width: 450px;
+  height: 400px;
+  width: 400px;
   margin-top: 30px;
   border-radius: 50%;
 }
@@ -45,4 +45,29 @@ user css
   height: 400px;
   width: 270px;
   margin: 10px 10px 10px 60px;
+}
+
+.bio-label{
+  font-weight: bold;
+  color:orange;
+}
+
+.match-list{
+  margin-left:40px;
+  padding:10px 30px 10px 30px;
+  display: inline-block;
+}
+
+.match-item{
+  width:300px;
+  margin-left:20px;
+  border: solid 2px white;
+	border-radius: 10px;
+	padding:10px 20px 10px 20px;
+}
+
+.match-list h4 {
+  color: orange;
+  font-weight: bold;
+  padding: 20px 0px 10px 0px;
 }

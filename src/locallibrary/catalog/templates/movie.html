@@ -4,10 +4,10 @@
 <div class="movie-container">
   <h2 class="movie-title">{{title}}</h2>
   <div class="row">
-    <div class="col-lg-8">
-      <img src='http://www.ecollegetimes.com/wp-content/uploads/2018/03/black_panther_-_website_image.jpg' alt="Black Panther">
-    </div>
     <div class="col-lg-4">
+      <img src={{picture_url}} alt="Black Panther">
+    </div>
+    <div class="col-lg-8">
       <p><strong>Directed By:</strong> {{director}}</br></br>
         <strong>Genre:</strong> {{genre}}</br></br>
       	<strong>Cast:</strong> {{cast}}</br></br>
@@ -17,12 +17,14 @@
       </p>
     </div>
 
-    {% if request_list %}
+    
       <div class="request-list">
-        <h4>Pending Requests:</h4>
+          <h4>Pending Requests:</h4>
+          {% if request_list %}
+        
         {% for request in request_list %}
         <div class="request-item">
-          <p class="req-username">User: {{request.username}}</p>
+          <p class="req-username req-label">Watcher: <a href="{% url 'user' request.username %}">{{request.username}}</a></p>
           <p class="req-date">Date: {{request.date}}</p>
           <p class="req-time">Time: {{request.time}}</p>
           <p class="req-location">Location: {{request.location}}</p>
@@ -36,10 +38,11 @@
         </form>
         </div>
         {% endfor %}
-      </div>
-    {% else %}
+        {% else %}
       <p>There are no requests for the movie.</p>
-    {% endif %}
+        {% endif %}
+      </div>
+    
 <!-- 
     <table class="request-match container-fluid row">
       <tr><th class="col-lg-6">REQUEST</th><th class="col-lg-6">MATCH</th></tr>
@@ -135,7 +138,12 @@
           {% if match_list %}
           {% for match in match_list %}
             <div class="match-item">
-              <p class="match-username">{{match.usernames}}</p>
+              <p>Watchers:</p>
+              {% for n in match.usernames.split %}
+              <a href="{% url 'user' n %}">{{n}}</a>
+              {% endfor %}
+              <br><br>
+              <!-- <p class="match-username">{{match.usernames}}</p> -->
               <p class="match-date">{{match.request.date}}</p>
               <p class="match-time">{{match.request.time}}</p>
               <p class="match-location">{{match.request.location}}</p>
