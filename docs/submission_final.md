@@ -32,9 +32,10 @@ Log in page: allows user to log in.
 ![login](imgs/login.png)
 
 <h3>Data Model:</h3>
-![model](imgs/model.png)
 
 Movie contains all basic information of a movie: cast, summary etc.  Genre represents a genre, there is multiple genres, and a movie can be in multiple genres.  Request is a user’s request to watch a movie, it contains all necessary information of a request as well as the Profile (user) who initialized the request.  Match is a class that represents a request that has been join, so it would have usernames, which is a list of user names (we are doing this instead of implementing multiple user relationship in Request, so that it is easier to query).  Match also belongs to a movie (this is inferred from Request).  Profile is the acutally app user, a profile would have a profileUsername, bio, gender, picture_url, and user.  Not that DjangoAuthUser is the default Django user to handle authentication/Authorization.  So the Profile class is basically a wrapper of DjangoAuthUser.  So in this document Profile and User mean the same thing, they are used interchangeably.
+
+![model](imgs/model.png)
 
 <h3>URL Routes/Mappings:</h3>
 
